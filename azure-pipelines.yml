@@ -180,7 +180,7 @@ steps:
     repository: 'mustapha69/backend-tunisairmob'
     command: 'buildAndPush'
     Dockerfile: 'backend/Docker/backend.Dockerfile'
-    buildContext: '/home/azureuser/myagent/_work/4/s'  # This should be the root of your project
+    buildContext: '/home/azureuser/myagent/_work/3/s'  # This should be the root of your project
     tags: '$(Build.BuildId)'
   displayName: 'Build and Push Backend Docker Image'
 
