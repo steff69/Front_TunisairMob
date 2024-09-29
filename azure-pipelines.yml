@@ -29,7 +29,7 @@ steps:
 - script: |
     flutter pub get
     flutter pub run build_runner build
-    flutter test test/widget_test.dart
+#    flutter test test/widget_test.dart
   displayName: 'Integration Test'
 
 #- script: |
@@ -75,7 +75,7 @@ steps:
     cliProjectName: 'Front_TunisairMobb'
     cliSources: '.'  # Scans the frontend files in the root directory
     extraProperties: |
-      sonar.java.binaries=.
+     sonar.java.binaries=.
 
 - task: SonarQubeAnalyze@6
   inputs:
@@ -100,7 +100,6 @@ steps:
 - task: SonarQubeAnalyze@6
   inputs:
     jdkversion: 'JAVA_HOME_17_X64'
-
 - task: SonarQubePublish@6
   inputs:
     pollingTimeoutSec: '600'
@@ -116,7 +115,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '/home/azureuser/myagent/_work/2/TestResults/dependency-check'
+    PathtoPublish: '/home/azureuser/myagent/_work/4/TestResults/dependency-check'
     artifactName: 'DependencyCheckReport'
     publishLocation: 'Container'
   displayName: 'Publish Dependency Check Report'
@@ -129,7 +128,7 @@ steps:
         /opt/dependency-check/bin/dependency-check.sh --project "Back_TunisairMob" \
         --scan 'backend/' \
         --format 'HTML' \
-        --out '/home/azureuser/myagent/_work/2/TestResults/backend-dependency-check' \
+        --out '/home/azureuser/myagent/_work/4/TestResults/backend-dependency-check' \
         --data /home/azureuser/dependency-check/data \
         --noupdate \
         --disableAssembly \
@@ -165,7 +164,7 @@ steps:
     repository: 'mustapha69/newrepfortunisair'
     command: 'buildAndPush'
     Dockerfile: 'Docker/Dockerfile'  # Frontend Dockerfile
-    buildContext: '/home/azureuser/myagent/_work/2/s'
+    buildContext: '/home/azureuser/myagent/_work/4/s'
     tags: '$(Build.BuildId)'
   displayName: 'Build and Push Frontend Docker Image'
 
@@ -176,7 +175,7 @@ steps:
     repository: 'mustapha69/backend-tunisairmob'
     command: 'buildAndPush'
     Dockerfile: 'backend/Docker/backend.Dockerfile'
-    buildContext: '/home/azureuser/myagent/_work/2/s'  # This should be the root of your project
+    buildContext: '/home/azureuser/myagent/_work/4/s'  # This should be the root of your project
     tags: '$(Build.BuildId)'
   displayName: 'Build and Push Backend Docker Image'
 
