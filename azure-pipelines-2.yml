@@ -1,0 +1,60 @@
+trigger:
+  - none
+
+pool:
+  name: bara
+  demands:
+    - agent.name -equals BestVM
+
+steps:
+- script: |
+    export BUILD_ID=$(Build.BuildId)
+    echo "BUILD_ID is set to: $BUILD_ID"
+  displayName: 'Export Build ID'
+  
+- script: |
+    ls -la $(Build.SourcesDirectory)
+    git clone https://github.com/steff69/Back_TunisairMob.git backend
+  displayName: 'Clone Backend Repository'
+
+# Run Flutter updates
+- script: |
+    flutter --version
+    flutter pub outdated
+    flutter pub upgrade --major-versions
+    flutter pub get
+  displayName: 'Run Flutter updates'
+
+# Run Tests First
+#- script: |
+#    flutter pub get
+#    flutter pub run build_runner build
+#    flutter test test/widget_test.dart
+ # displayName: 'Integration Test'
+
+#- script: |
+#    flutter test test/register_controller_test.dart
+#    flutter test test/register_page_test.dart
+#  displayName: 'JUnit Test'
+
+#- script: |
+#    flutter test --machine > test-results.json
+#    cat test-results.json | tojunit > test-results.xml || true
+#  displayName: 'Create JUnit Test Results'
+
+#- task: PublishTestResults@2
+#  inputs:
+#    testResultsFiles: './test-results.xml'
+#    testResultsFormat: 'JUnit'
+
+# Build APK after tests pass
+- script: |
+    flutter clean
+    flutter pub get
+    flutter build apk --release --verbose
+  displayName: 'Build APK Front'
+
+- script: |
+    pwd
+    ls -la
+  displayName: 'Show Current Directory and Contents'
