@@ -18,7 +18,7 @@ class CategoryService extends GetxService {
   Future<void> fetchData() async {
     isLaoding.value = true;
 
-    final url = Uri.parse('http://10.0.2.2:5000/api/category');
+    final url = Uri.parse('ttp://51.120.240.58:8083/api/category');
     try {
       final response = await http.get(url);
 

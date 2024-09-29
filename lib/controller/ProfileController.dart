@@ -19,7 +19,7 @@ class ProfileController extends GetxController {
   void updateUserFunction(String id, Map<String, String> data) async {
     loading.value = true;
 
-    final url = Uri.parse('http://10.0.2.2:5000/api/user/update/$id');
+    final url = Uri.parse('ttp://51.120.240.58:8083/api/user/update/$id');
     Map<String, String> headers = {'Content-Type': 'application/json'};
 
     print("eeeee");
