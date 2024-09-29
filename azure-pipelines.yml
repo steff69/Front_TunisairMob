@@ -110,7 +110,7 @@ steps:
     targetType: 'inline'
     script: |
       export NVD_API_KEY='47eef216-e3ac-4bc5-ac23-d03157dcd439'
-      /opt/dependency-check/bin/dependency-check.sh --project "Front-TunisairMob" --scan '/home/azureuser/myagent/_work/2/s' --format 'HTML' --out '/home/azureuser/myagent/_work/2/TestResults/dependency-check' --data /home/azureuser/dependency-check/data --noupdate
+      /opt/dependency-check/bin/dependency-check.sh --project "Front-TunisairMobb" --scan '/home/azureuser/myagent/_work/2/s' --format 'HTML' --out '/home/azureuser/myagent/_work/2/TestResults/dependency-check' --data /home/azureuser/dependency-check/data --noupdate
   displayName: 'Run Dependency Check'
 
 - task: PublishBuildArtifacts@1
