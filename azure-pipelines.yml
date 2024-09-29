@@ -27,6 +27,7 @@ steps:
 
 # Run Tests First
 - script: |
+    flutter --version
     flutter pub get
     flutter pub run build_runner build
 #    flutter test test/widget_test.dart
