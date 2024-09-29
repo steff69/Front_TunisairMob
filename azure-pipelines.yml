@@ -67,43 +67,45 @@ steps:
   displayName: 'Run Backend Tests'
   
 # SonarQube Analysis (Frontend)
-- task: SonarQubePrepare@6
-  inputs:
-    SonarQube: 'seviceconnsonarjdid'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'Front_TunisairMobb'
-    cliProjectName: 'Front_TunisairMobb'
-    cliSources: '.'  # Scans the frontend files in the root directory
-    extraProperties: |
-     sonar.java.binaries=.
+#- task: SonarQubePrepare@6
+#  inputs:
+#    SonarQube: 'seviceconnsonarjdid'
+#    scannerMode: 'CLI'
+#    configMode: 'manual'
+#    cliProjectKey: 'Front_TunisairMobb'
+#    cliProjectName: 'Front_TunisairMobb'
+#    cliSources: '.'  # Scans the frontend files in the root directory
+#    extraProperties: |
+#     sonar.java.binaries=.
 
-- task: SonarQubeAnalyze@6
-  inputs:
-    jdkversion: 'JAVA_HOME_17_X64'
+#- task: SonarQubeAnalyze@6
+#  inputs:
+#    jdkversion: 'JAVA_HOME_17_X64'
 
-- task: SonarQubePublish@6
-  inputs:
-    pollingTimeoutSec: '600'
+#- task: SonarQubePublish@6
+#  inputs:
+#    pollingTimeoutSec: '600'
 
 # SonarQube Analysis (Backend)
-- task: SonarQubePrepare@6
-  inputs:
-    SonarQube: 'seviceconnsonarjdid'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'Back_TunisairMob'
-    cliProjectName: 'Back_TunisairMob'
-    cliSources: 'backend/'  # Scans the backend code under the 'backend' directory
-    extraProperties: |
-      sonar.nodejs.binaries=backend
 
-- task: SonarQubeAnalyze@6
-  inputs:
-    jdkversion: 'JAVA_HOME_17_X64'
-- task: SonarQubePublish@6
-  inputs:
-    pollingTimeoutSec: '600'
+#- task: SonarQubePrepare@6
+#  inputs:
+#    SonarQube: 'seviceconnsonarjdid'
+#    scannerMode: 'CLI'
+#    configMode: 'manual'
+#    cliProjectKey: 'Back_TunisairMob'
+#    cliProjectName: 'Back_TunisairMob'
+#    cliSources: 'backend/'  # Scans the backend code under the 'backend' directory
+#    extraProperties: |
+#      sonar.nodejs.binaries=backend
+
+#- task: SonarQubeAnalyze@6
+#  inputs:
+#    jdkversion: 'JAVA_HOME_17_X64'
+
+#- task: SonarQubePublish@6
+#  inputs:
+#    pollingTimeoutSec: '600'
 
 # Run Dependency Check (Frontend)
 - task: Bash@3
@@ -111,7 +113,7 @@ steps:
     targetType: 'inline'
     script: |
       export NVD_API_KEY='47eef216-e3ac-4bc5-ac23-d03157dcd439'
-      /opt/dependency-check/bin/dependency-check.sh --project "Front-TunisairMobb" --scan '/home/azureuser/myagent/_work/2/s' --format 'HTML' --out '/home/azureuser/myagent/_work/2/TestResults/dependency-check' --data /home/azureuser/dependency-check/data --noupdate
+      /opt/dependency-check/bin/dependency-check.sh --project "Front-TunisairMobb" --scan '/home/azureuser/myagent/_work/4/s' --format 'HTML' --out '/home/azureuser/myagent/_work/4/TestResults/dependency-check' --data /home/azureuser/dependency-check/data --noupdate
   displayName: 'Run Dependency Check'
 
 - task: PublishBuildArtifacts@1
@@ -139,7 +141,7 @@ steps:
   # Publish Backend Dependency Check Results
 - task: PublishBuildArtifacts@1
   inputs:
-      PathtoPublish: '/home/azureuser/myagent/_work/2/TestResults/backend-dependency-check'
+      PathtoPublish: '/home/azureuser/myagent/_work/4/TestResults/backend-dependency-check'
       artifactName: 'BackendDependencyCheckReport'
       publishLocation: 'Container'
   displayName: 'Publish Backend Dependency Check Report'
