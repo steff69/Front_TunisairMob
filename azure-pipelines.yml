@@ -164,7 +164,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'docker'
-    repository: 'mustapha69/newrepfortunisair'
+    repository: 'mustapha69/frontend-tunisairmob'
     command: 'buildAndPush'
     Dockerfile: 'Docker/Dockerfile'  # Frontend Dockerfile
     buildContext: '/home/azureuser/myagent/_work/4/s'
